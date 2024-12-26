@@ -1,0 +1,40 @@
+    <layout>
+      <configItem>
+        <name>qq</name>
+        <shortDescription>qq</shortDescription>
+        <description>English Qucoostom (US)</description>
+        <languageList>
+          <iso639Id>eng</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>typo-us-k61</name>
+            <description>English Qucoostom (US, Typo, K61)</description>
+            <languageList>
+              <iso639Id>eng</iso639Id>
+            </languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>typo-ru-k61</name>
+            <description>Russian Qucoostom (RU, Typo, K61)</description>
+            <languageList>
+              <iso639Id>rus</iso639Id>
+            </languageList>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>mfuthark</name>
+            <description>Younger and Elder Futhark Qucoostom</description>
+            <languageList>
+              <iso639Id>eng</iso639Id>
+            </languageList>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+

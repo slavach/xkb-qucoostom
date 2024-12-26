@@ -1,0 +1,302 @@
+// # Qucoostom keyboard layouts
+//
+// (RU) Клавиатурные раскладки Куку́стэм
+//
+// 2024, by slavach@github
+
+// This software comes with absolutely no warranty. It can damage your life.
+// The layouts are useful for me. Could be useful for you.
+// Write me if you wish. Bugreports are welcome.
+
+// ## Description, Installation and Usage
+
+// ### Symbols /usr/share/X11/xkb/symbols/qq
+//
+// English and Russian `XKB symbols` for ugly cropped `61 keys keyboards`.
+//
+// The layouts are hardcoded with `typo(base)` for 3-rd and 4-th levels.
+// In order to use XKB options instead, you can comment out the includes
+// `include "typo(base)"`
+//
+// K61 mappings is not the option but the feature of this symbols.
+//
+// This symbols set also conntains the mix of Younger and Elder FUTHARK runes.
+//
+// How to install
+//
+// Backup /usr/share/X11/xkb/symbols/qq if you have it.
+// Copy the ./symbols/qq to /usr/share/X11/xkb/symbols/
+//
+// You can use the symbols with `setxkbmap` command.
+//
+// $ setxkbmap -layout qq,qq,qq -variant typo-us-k61,typo-ru-k61,mfuthark # ...
+
+// ### XML Descriptions
+//
+// In order to select the layouts in desktop environments,
+// add the descriptions to XML rules.
+// The XML descriptions are in the file `base.qq.inc.xml`
+//
+// To add the XML descriptions, cd to `/usr/share/X11/xkb/rules`, and:
+//
+// 1. Backup `base.xml` and `evdev.xml`.
+// 2. Insert `base.qq.inc.xml` into `base.xml` to the latest position
+//    inside the `layoutList`, right before the closing tag.
+//    `XPath: /xkbConfigRegistry/layoutList/layout[last]`.
+// 3. Copy `base.xml` to `evdev.xml`.
+//
+// PS. `setxkbmap` does not use the XML descriptions.
+
+// ### Layouts Names in a Desktop Environment
+//
+// 1. English Qucoostom (US, Typo, K61) (Resides in the English Language)
+// 2. Russian Qucoostom (RU, Typo, K61) (Resides in the Russian Language)
+// 3. Younger and Elder Futhark Qucoostom (Resides in the English Language)
+
+// ### Text Descriptions
+//
+// To add the text descriptions, cd to `/usr/share/X11/xkb/rules`, and:
+//
+// 1. Backup `base.lst` and `evdev.lst`.
+// 2. Add to the `! layout` list:
+//    `qq English Qucoostom (US)`
+// 3. Add to the `! variant` list:
+//    `typo-us-k61 qq: English Qucoostom (US, Typo, K61)`
+//    `typo-ru-k61 qq: Russian Qucoostom (RU, Typo, K61)`
+//    `mfuthark qq: Younger and Elder Futhark Qucoostom`
+// 4. Copy `base.lst` to `evdev.lst`.
+//
+// PS. Actually do not know what the commands are using `base.lst`, `evdev.lst`.
+
+// ### Levels
+//
+// +-----+  1. No modifiers.
+// | 2 4 |  2. Shift while pressed.
+// | 1 3 |  3. ISO_Level3_Shift while pressed.
+// +-----+  4. ISO_Level3_Shift+Shift while pressed.
+
+
+// ## Symbols Descriptions
+
+// English Qucoostom (US)
+// The Original US us(basic) Layout
+//
+// The layout is non usable on K61
+// because of the lack of "`", "~", "/", "?" symbols.
+// This picture is just for the reference.
+//
+// +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----------+
+// |     | !   | @   | #   | $   | %   | ^   | &   | *   | (   | )   | _   | +   | Back      |
+// | ESC | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 0   | -   | =   | Back      |
+// +-----+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---------+
+// |       | Q   | W   | E   | R   | T   | Y   | U   | I   | O   | P   | {   | }   | |       |
+// | Tab   | q   | w   | e   | r   | t   | y   | u   | i   | o   | p   | [   | [   | \       |
+// +-------+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+---------+
+// |         | A   | S   | D   | F   | G   | H   | J   | K   | L   | :   | "   |           ¡ |
+// | Caps    | a   | s   | d   | f   | g   | h   | j   | k   | l   | ;   | '   | Enter <---+ |
+// +---------+-+---+-+---+-+---+-----+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-------------+
+// |           | Z   | X   | C   | V   | B   | N   | M   | <   | >   |     |                 |
+// | Shift     | z   | x   | c   | v   | b   | n   | m   | ,   | .   | ↑   | Shift           |
+// +-------+---+---+-+-----+-----+-----+-----+-----+-----+---+-+-----+-----+-+-------+-------+
+// |       | Meta  |       |                                 |       |       |       | Fn    |
+// | Ctrl  | (Win) | Alt   | Space                           | ←     | ↓     | →     |       |
+// +-------+-------+-------+---------------------------------+-------+-------+-------+-------+
+//
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "en" {
+  name[Group1]= "English Qucoostom (US)";
+
+  include "us(basic)"
+};
+
+// English Qucoostom (US, Typo, K61)
+//
+// +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----------+
+// | ~ ? | ! ¡ | @ ½ | # ⅓ | $ ¼ | %   | ^   | & ¿ | * ⅛ | (   | )   | _ – | + ± | Back      |
+// | ` / | 1 ¹ | 2 ² | 3 ³ | 4 $ | 5 ‰ | 6 ↑ | 7 & | 8 ∞ | 9 ← | 0 → | - — | = ≠ | Back Del  |
+// +-----+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---------+
+// |Tab    | Q   | W   | E   | R   | T   | Y   | U   | I   | O   | P ˝ | { { | } } | | ~     |
+// |Tab Ins| q   | w   | e € | r ® | t ™ | y ¥ | u ₴ | i   | o   | p ´ | [ [ | [ [ | \ /     |
+// +-------+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+---------+
+// |         | A   | S   | D ÷ | F   | G   | H   | J ‚ | K ‘ | L ’ | : ′ | " ″ |           ¡ |
+// | ESC     | a   | s § | d ° | f £ | g   | h ₽ | j „ | k “ | l ” | ; ‘ | ' ’ | Enter <---+ |
+// +---------+-+---+-+---+-+---+-----+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-------------+
+// |           | Z   | X ⋅ | C ¢ | V ◊ | B   | N   | M • | < < | > > |↑ Hom|                 |
+// | Shift     | z   | x × | c © | v ↓ | b   | n   | m − | , « | . » |↑ Hom| Shift           |
+// +-------+---+---+-+-----+-----+-----+-----+-----+-----+---+-+-----+-----+-+-------+-------+
+// |       | Meta  |       | .     #                         |←  .   |↓  /   |→  ,   | Fn    |
+// | Ctrl  | (Win) | Alt   | Space nobreakspace              |←  Prio|↓  End |→  Next|       |
+// +-------+-------+-------+---------------------------------+-------+-------+-------+-------+
+//
+partial alphanumeric_keys modifier_keys
+xkb_symbols "typo-us-k61" {
+  name[Group1]= "English Qucoostom (US, Typo, K61)";
+
+  include "typo(base)"
+  include "us(basic)"
+  include "qq(k61)"
+};
+
+// Russian Qucoostom (RU, Typo, K61)
+//
+// +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----------+
+// | Ё # | ! ¡ | " ½ | № ⅓ | ; ¼ | %   | :   | ? ¿ | * ⅛ | (   | )   | _ – | + ± | Back      |
+// | ё @ | 1 ¹ | 2 ² | 3 ³ | 4 $ | 5 ‰ | 6 ↑ | 7 & | 8 ₽ | 9 ← | 0 → | - — | = ≠ | Back Del  |
+// +-----+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---------+
+// |Tab    | Й   | Ц   | У   | К   | Е   | Н   | Г   | Ш   | Щ   | З ˝ | Х { | Ъ } | | ~     |
+// |Tab Ins| й   | ц   | у € | к ® | е ™ | н ¥ | г ₴ | ш   | щ   | з ´ | х [ | ъ ] | \ /     |
+// +-------+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+---------+
+// |         | Ф   | Ы   | В ÷ | А   | П   | Р   | О ‚ | Л ‘ | Д ’ | Ж ′ | Э ″ |           ¡ |
+// | ESC     | ф   | ы § | в ° | а £ | п   | р ₽ | о „ | л “ | д ” | ж ‘ | э ’ | Enter <---+ |
+// +---------+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-------------+
+// |           | Я   | Ч ⋅ | С ¢ | М ◊ | И   | Т   | Ь • | Б < | Ю > |↑ Hom|                 |
+// | Shift     | я   | ч × | с © | м ↓ | и   | т   | ь − | б « | ю » |↑ Hom| Shift           |
+// +-------+---+---+-+-----+-----+-----+-----+-----+-----+---+-+-----+-----+---------+-------+
+// |       | Meta  |       | .     #                         |←  .   |↓  /   |→  ,   | Fn    |
+// | Ctrl  | (Win) | Alt   | Space nobrakespace              |←  Prio|↓  End |→  Next|       |
+// +-------+-------+-------+---------------------------------+-------+-------+-------+-------+
+//
+partial alphanumeric_keys modifier_keys
+xkb_symbols "typo-ru-k61" {
+  name[Group1]= "Russian Qucoostom (RU, Typo, K61)";
+
+  include "typo(base)"
+  include "ru(winkeys)"
+  include "qq(k61)"
+  key <ESC> { [ Cyrillic_io, Cyrillic_IO, at, numbersign ] };
+  key <TLDE> { [ Cyrillic_io, Cyrillic_IO, at, numbersign ] };
+};
+
+// Qucoostom 61 Keys Keyboard Mappings
+//
+// The Original Top Row
+// +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----------+
+// | ESC | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 0   | -   | =   | ← Back    |
+// | ` ~ | F1  | F2  | F3  | F4  | F5  | F6  | F7  | F8  | F9  | F10 | F11 | F12 |    Delete |
+// +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----------+
+//
+// The Whole Keyboard, Remapped Only the Keys Shown
+// +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----------+
+// | ~ ? |     |     |     |     |     |     |     |     |     |     |     |     | Back      |
+// | ` / |     |     |     |     |     |     |     |     |     |     |     |     | Back Del  |
+// +-----+-+---+-+---+-+---+-----+-----+-----+-----+-----+-----+-----+-----+-----+-+---------+
+// |Tab    |     |     |     |     |     |     |     |     |     |     |     |     | | @     |
+// |Tab Ins|     |     |     |     |     |     |     |     |     |     |     |     | \ ?     |
+// +-------+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+---------+
+// |         |     |     |     |     |     |     |     |     |     |     |     |             |
+// | ESC     |     |     |     |     |     |     |     |     |     |     |     |             |
+// +---------+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-------------+
+// |           |     |     |     |     |     |     |     |     |     |↑ Hom|                 |
+// |           |     |     |     |     |     |     |     |     |     |↑ Hom|                 |
+// +-------+---+---+-+-----+-----+-----+-----+-----+-----+---+-+-----+-----+-+-------+-------+
+// |       |       |       | ?     #                         |←  .   |↓  /   |→  ,   | Fn    |
+// |       |       |       | Space nobrakespace              |←  Prio|↓  End |→  Next|       |
+// +-------+-------+-------+---------------------------------+-------+-------+-------+-------+
+//
+// The Original Bottom
+//                                                                   +-------+
+//                                                                   | / ?   |
+//                                                                   | ↑     |
+// +-------+-------+-------+---------------------------------+-------+-------+-------+-------+
+// | Ctrl  | Meta  | Alt   | Space                           | Alt   | Menu  | Ctrl  | Fn    |
+// |       |       |       |                                 | ←     | ↓     |     → |       |
+// +-------+-------+-------+---------------------------------+-------+-------+-------+-------+
+//
+partial alphanumeric_keys modifier_keys
+xkb_symbols "k61" {
+  name[Group1]= "Qucoostom 61 Keys Keyboard Mappings";
+
+  key <ESC> { [ grave, asciitilde, slash, question ] };
+  key <TLDE> { [ grave, asciitilde, slash, question ] };
+  key <BKSP> { [ BackSpace, BackSpace, Delete, Delete ] };
+
+  //key <BKSL> { [ backslash, bar, slash, asciitilde ] };
+  key <BKSL> { [ backslash, bar, question, at ] };
+
+  key <TAB> { [ Tab, Tab, Insert ] };
+
+  key <SPCE> { [ space,  question, nobrakespace, numbersign ] };
+
+  key <UP> { [ Up, Up, Home, Prior ] };
+  key <LEFT> { [ Left, Left, Prior, period ] };
+  key <DOWN> { [ Down, Down, End, slash ] };
+  key <RGHT> { [ Right, Right, Next, comma ] };
+
+  //key <UP> { [ Up, Up, Prior, Prior ] };
+  //key <LEFT> { [ Left, Left, Home, period ] };
+  //key <DOWN> { [ Down, Down, Next, slash ] };
+  //key <RGHT> { [ Right, Right, End, comma ] };
+
+  //key <UP> { [ Up, Up, Prior, Prior ] };
+  //key <LEFT> { [ Left, Left, Home, period ] };
+  //key <DOWN> { [ Down, Down, Next, comma ] };
+  //key <RGHT> { [ Right, Right, End, question ] };
+};
+
+// Younger and Elder Futhark Qucoostom
+//
+// The runic symbols are in the 1st-3rd levels.
+//
+// +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----------+
+// | Esc | !   | @   | #   | $   | %   | ^   | &   | *   | (   | )   | _   | +   | <x        |
+// |     | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 0   | -   | =   | Backspace |
+// +-----+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---------+
+// |       | Q Q | W W | ᛖ E | R R | ᛐ T | Y Y | U U | I I | ᚭ O | P P | {   | }   | | |     |
+// | Tab   | q q | ᚹ w | ᛇ e | ᚱ r | ᛏ t | ᚦ y | ᚢ u | ᛁ i | ᚬ o | ᛈ p | [   | ]   | \ \     |
+// +-------+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+---------+
+// | Caps    | ᛆ A | ᛊ S | D D | F F | G G | ᚽ H | J J | K K | L L | ᛬ : | ᛭ " |           ¡ |
+// | Lock    | ᛅ a | ᛋ ᛌ | ᛞ d | ᚠ f | ᚷ g | ᚼ h | ᛃ j | ᚴ k | ᛚ l | ; ; | ' ' | Enter <---+ |
+// +---------+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-+---+-------------+
+// |           | Z Z | ᛧ X | C C | V V | ᛒ B | ᚾ N | ᛘ M | · < | ᛫ > | • ? |                 |
+// | Shift     | ᛉ z | ᛦ x | c c | v v | ᛓ b | ᚿ n | ᛙ m | , , | . . | / / | Shift           |
+// +-------+---+---+-+-----+-----+-----+-----+-----+-----+---+-+-----+-----+---------+-------+
+// |       | Meta  |       | ‡                               |       |       |       |       |
+// | Ctrl  | (Win) | Alt   | Space                           | Alt   | Fn    | Menu  | Ctrl  |
+// +-------+-------+-------+---------------------------------+-------+-------+-------+-------+
+//
+partial alphanumeric_keys modifier_keys
+xkb_symbols "mfuthark" {
+  name[Group1]= "Younger and Elder Futhark Qucoostom";
+  key.type[group1]= "ALPHABETIC";
+
+  include "us(basic)"
+
+  key <AD01> { [ q, Q ] }; // q:
+  key <AD02> { [ U16B9, W, w, W ] }; // w: "ᚹ"
+  key <AD03> { [ U16C7, U16D6, e, E ] }; // e: "ᛇ", "ᛖ"
+  key <AD04> { [ U16B1, R, r, R ] }; // r: "ᚱ"
+  key <AD05> { [ U16CF, U16D0, t, T ] }; // t: "ᛏ", "ᛐ"
+  key <AD06> { [ U16A6, Y, y, Y ] }; // y: "ᚦ"
+  key <AD07> { [ U16A2, U, u, U ] }; // u: "ᚢ"
+  key <AD08> { [ U16C1, I, i, I ] }; // i: "ᛁ"
+  key <AD09> { [ U16AC, U16AD, o, O ] }; // o: "ᚬ", "ᚭ"
+  key <AD10> { [ U16C8, P, p, P ] }; // p: "ᛈ"
+  key <AD11> { [ bracketleft, braceleft ] }; // bracketleft: "[", "{"
+  key <AD12> { [ bracketright, braceright ] }; // bracketright: "]", "}"
+
+  key <AC01> { [ U16C5, U16C6, a, A ] }; // a: "ᛅ", "ᛆ"
+  key <AC02> { [ U16CB, U16CA, U16CC, S ] }; // s: "ᛋ", "ᛊ" "ᛌ"
+  key <AC03> { [ U16DE, D, d, D ] }; // d: "ᛞ"
+  key <AC04> { [ U16A0, F, f, F ] }; // f: "ᚠ"
+  key <AC05> { [ U16B7, G, g, G ] }; // g: "ᚷ"
+  key <AC06> { [ U16BC, U16BD, h, H ] }; // h: "ᚼ", "ᚽ"
+  key <AC07> { [ U16C3, J, j, J ] }; // j: "ᛃ"
+  key <AC08> { [ U16B4, K, k, K ] }; // k: "ᚴ"
+  key <AC09> { [ U16DA, L, l, L ] }; // l: "ᛚ"
+  key <AC10> { [ semicolon, U16EC, semicolon, colon ] }; // semicolon: ";" "᛬", ";", ":"
+  key <AC11> { [ apostrophe, U16ED, apostrophe, quotedbl ] }; // apostrophe: "'", "᛭", "'", '"'
+
+  key <AB01> { [ U16C9, Z, z, Z ] }; // z: "ᛉ"
+  key <AB02> { [ U16E6, U16E7, x, X ] }; // x: "ᛦ", "ᛧ"
+  key <AB03> { [ c, C ] }; // c:
+  key <AB04> { [ v, V ] }; // v:
+  key <AB05> { [ U16D3, U16D2, b, B ] }; // b: "ᛓ", "ᛒ"
+  key <AB06> { [ U16BE, U16BF, n, N ] }; // n: "ᚾ", "ᚿ"
+  key <AB07> { [ U16D8, U16D9, m, M ] }; // m: "ᛘ", "ᛙ"
+  key <AB08> { [ comma, U00B7, comma, less ] }; // comma: "," "·", ",", "<"
+  key <AB09> { [ period, U16EB, period, greater ] }; // period: ".", "᛫", ".", ">"
+  key <AB10> { [ slash, U2022, slash, question ] }; // slash: "/", "•", "/", "?"
+
+  key <SPCE> { [ space, U2021 ] }; // space: " ", "‡"
+};
+
