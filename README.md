@@ -24,8 +24,8 @@ Look into `./symbols/qq` for the additional info, like the "pictures" of layouts
 
 #### How to install qq
 
-1, Backup /usr/share/X11/xkb/symbols/qq if you have it.  
-2, Copy the ./symbols/qq to /usr/share/X11/xkb/symbols/  
+1, Backup `/usr/share/X11/xkb/symbols/qq` if you have it.  
+2, Copy the `./symbols/qq` to `/usr/share/X11/xkb/symbols/`  
 
 You can use the symbols with `setxkbmap` command.
 
